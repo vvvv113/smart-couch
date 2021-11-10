@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+{% block main_page %}
+    {% if user.username %}
+
+        <a class="p-2 text-dark" href="{% url 'profile' user.username %}">Personal Page</a>
+
+    {% else %}
+            <a class="p-2 text-dark" href="{% url 'home' %}">Main page</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            {% if list_users %}
+                {% for el in list_users %}
+                    <div class="alert alert-warning mt-2">
+                        <a href="{% url 'profile' el.username %}">
+                            <h4>{{ el.first_name }} {{ el.last_name }}</h4>
+                            <h6>ИСУ: {{ el.username }}</h6>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-warning mt-2">
+                        <h4>Здесь пока ничего нет!</h4>
+                    </div>
+            {% endif %}
+    </div>
+{% endblock %}

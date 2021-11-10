@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'main/css/registration.css' %}"/>
+
+{% endblock %}
+
+{% block main_page %}
+<a class="p-2 text-dark" href="{% url 'home' %}">Main page</a>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <a href="{% url 'home' %}" style="color: black"><button style="background: #f44336">Вернуться на главную страницу</button></a>
+    <br>
+    <form class="modal1-content" method="POST">
+			  {% csrf_token %}
+			<div class="container">
+			  <h1>Регистрация</h1>
+			  <p>Пожалуйста, заполните эту форму, чтобы создать учетную запись.</p>
+			  <hr>
+				<label for="email"><b>Почта</b></label>
+				{{ form.email }} <br><br>
+                <label for="username"><b>Номер ИСУ</b></label>
+				{{ form.username }}
+				<label for="first_name"><b>Имя</b></label>
+				{{ form.first_name }}
+				<label for="last_name"><b>Фамилия</b></label>
+				{{ form.last_name }}
+
+			  <label for="password1"><b>Пароль</b></label>
+				{{ form.password1 }}
+<!--			  <input type="password" placeholder="Придумайте пароль" name="psw" required> -->
+			  <label for="password2"><b>Повторите пароль</b></label>
+				{{ form.password2 }}
+<!--			  <input type="password" placeholder="Повторите пароль" name="psw-repeat" required> -->
+			  <label>
+				<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+			  </label>
+
+			  <div class="clearfix1">
+
+				<button type="submit" class="signupbtn">Отправить</button>
+			  </div>
+			</div>
+		  </form>
+    </div>
+{% endblock %}
